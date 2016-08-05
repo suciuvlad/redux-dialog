@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react"), require("react-redux"), require("react-dom"), require("classnames"), require("flex.dialog"), require("jquery"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react", "react-redux", "react-dom", "classnames", "flex.dialog", "jquery"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("react"), require("react-redux"), require("react-dom"), require("classnames"), require("flex.dialog"), require("jquery")) : factory(root["react"], root["react-redux"], root["react-dom"], root["classnames"], root["flex.dialog"], root["jquery"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -162,13 +172,13 @@
 /* 2 */
 /***/ function(module, exports) {
 
-	module.exports = react;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = react-redux;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
 /* 4 */
@@ -284,25 +294,25 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = react-dom;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = classnames;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = flex.dialog;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = jquery;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ },
 /* 9 */
@@ -399,4 +409,6 @@
 	};
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;

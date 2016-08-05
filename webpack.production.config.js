@@ -7,6 +7,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/build",
+    libraryTarget: 'umd',
     filename: "[name].js"
   },
 
@@ -19,6 +20,16 @@ module.exports = {
     'jquery',
     'redux'
   ],
+
+  // externals: {
+  //   react: 'React',
+  //   'classnames': 'classnames',
+  //   'react-redux': 'react-redux',
+  //   'jquery': 'jquery',
+  //   'redux': 'redux',
+  //   'flex.dialog': 'flex.dialog',
+  //   'react-dom': 'ReactDOM'
+  // },
 
   module: {
     loaders: [
