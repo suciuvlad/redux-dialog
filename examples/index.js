@@ -11,17 +11,13 @@ const reducers = {
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 
-class BasicDialog extends Component {
-  render() {
-    return(
-      <div>
-        <div className="dlg--body">
-          My awesome modalbox!
-        </div>
-      </div>
-    );
-  }
-}
+const BasicDialog = () => (
+  <div>
+    <div className="dlg--body">
+      My awesome modalbox!
+    </div>
+  </div>
+)
 
 const Dialog = reduxDialog({
   name: 'signupDialog',
