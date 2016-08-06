@@ -5,7 +5,11 @@ import { closeDialog } from './actions';
 
 const reduxDialog = (dialogProps) => {
 
-  const { name, onAfterOpen, onRequestClose } = dialogProps;
+  const {
+    name,
+    onAfterOpen = () => {},
+    onRequestClose = () => {}
+  } = dialogProps;
 
   return((WrappedComponent) => {
     class ReduxDialog extends Component {

@@ -114,9 +114,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var reduxDialog = function reduxDialog(dialogProps) {
 	  var name = dialogProps.name;
-	  var _onAfterOpen = dialogProps.onAfterOpen;
-	  var _onRequestClose = dialogProps.onRequestClose;
+	  var _dialogProps$onAfterO = dialogProps.onAfterOpen;
 
+	  var _onAfterOpen = _dialogProps$onAfterO === undefined ? function () {} : _dialogProps$onAfterO;
+
+	  var _dialogProps$onReques = dialogProps.onRequestClose;
+
+	  var _onRequestClose = _dialogProps$onReques === undefined ? function () {} : _dialogProps$onReques;
 
 	  return function (WrappedComponent) {
 	    var ReduxDialog = function (_Component) {
