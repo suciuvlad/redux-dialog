@@ -28,11 +28,11 @@ class BasicDialog extends Component {
 const Dialog = reduxDialog({
   name: 'signupDialog',
 
-  onClose: function () {
+  onRequestClose: function () {
     console.log('Dialog was closed');
   },
 
-  onOpen: function () {
+  onAfterOpen: function () {
     console.log('Dialog was opened');
   }
 })(BasicDialog);
