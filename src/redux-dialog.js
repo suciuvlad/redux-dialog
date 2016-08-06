@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Dialog from './dialog'
+import Modal from 'react-modal'
 import { closeDialog } from './actions';
 
-const reduxDialog = ({ name, onClose, onOpen }) => {
+const reduxDialog = (dialogProps) => {
+
+  const { name, onAfterOpen, onRequestClose } = dialogProps;
 
   return((WrappedComponent) => {
     class ReduxDialog extends Component {
       render () {
         return (
-          <Dialog {...this.props}>
+          <Modal {...dialogProps} {...this.props}>
             <WrappedComponent {...this.props} />
-          </Dialog>
+          </Modal>
         );
       }
     }
 
-    const mapStateToProps = (state) => {
-      return { isOpen: (state.dialogs.dialogs &&
-        state.dialogs.dialogs[name] &&
-        state.dialogs.dialogs[name].isOpen) || false }
-    }
+    const mapStateToProps = (state) => ({
+      isOpen: (state.dialogs.dialogs
+        && state.dialogs.dialogs[name]
+        && state.dialogs.dialogs[name].isOpen) || false
+    })
 
-    const mapDispatchToProps = (dispatch) => {
-      return {
-        onClose: () => {
-          dispatch(closeDialog(name))
-          onClose();
-        },
+    const mapDispatchToProps = (dispatch) => ({
+      onAfterOpen: () => {
+        onAfterOpen();
+      },
 
-        onOpen: () => {
-          onOpen();
-        }
+      onRequestClose: () => {
+        onRequestClose();
+        dispatch(closeDialog(name))
       }
-    }
+    })
 
     return connect(mapStateToProps, mapDispatchToProps)(ReduxDialog);
 
