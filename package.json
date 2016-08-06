@@ -12,11 +12,9 @@
   "author": "Vlad Suciu",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.5",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
-    "jquery": "^2.2.4",
     "redux": "^3.5.2"
   },
   "devDependencies": {
