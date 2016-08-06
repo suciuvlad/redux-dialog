@@ -1,8 +1,14 @@
 {
   "name": "redux-dialog",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Higher Order Component using react-redux to keep dialog state in a Redux store",
   "main": "build/redux.dialog.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suciuvlad/redux-dialog.git"
+  },
+  "homepage": "https://github.com/suciuvlad/redux-dialog",
+  "bugs": "https://github.com/suciuvlad/redux-dialog/issues",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --config webpack.config.js --content-base examples/ --progress",
@@ -32,5 +38,19 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "tags": [
+    "react",
+    "redux",
+    "react-component",
+    "modal",
+    "dialog"
+  ],
+  "keywords": [
+    "react",
+    "redux",
+    "react-component",
+    "modal",
+    "dialog"
+  ]
 }
