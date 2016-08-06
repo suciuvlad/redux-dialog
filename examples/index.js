@@ -4,8 +4,6 @@ import reduxDialog, { dialogReducer, openDialog, closeDialog } from '../src';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import './application.scss';
-
 const reducers = {
   dialogs: dialogReducer
 }
