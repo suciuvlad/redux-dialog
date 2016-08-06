@@ -46,7 +46,7 @@ const BasicDialog = () => (
 )
 
 const Dialog = reduxDialog({
-  name: 'signupDialog' // unique name - you can't find two dialogs with the same name
+  name: 'signupDialog' // unique name - you can't have two dialogs with the same name
 })(BasicDialog);
 ```
 
