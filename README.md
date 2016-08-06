@@ -13,12 +13,13 @@ npm start
 
 ## Install
 
-The easiest way to use redux-dialog is to install it from NPM and include it in your own React build process.
+The easiest way to use redux-dialog is to install it from NPM and include it in your own React build process
+
 ```npm install --save redux-dialog```
 
 ## Usage
 
-The first step is to combine the redux-dialog reducer with your own application reducers.
+The first step is to combine the redux-dialog reducer with your own application reducers
 
 ### Step 1
 ```js
@@ -57,7 +58,7 @@ Use redux-dialog's actions to show and hide the dialog
 ```js
 import { openDialog, closeDialog } from 'redux-dialog';
 const MyComponent = () => (
-  <a href="#" onClick={() => openDialog('signupDialog')}></a>
+  <a href="#" onClick={() => dispatch(openDialog('signupDialog'))}></a>
 )
 ```
 
