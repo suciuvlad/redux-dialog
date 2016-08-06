@@ -41,9 +41,7 @@ import reduxDialog from 'redux-dialog';
 
 const BasicDialog = () => (
   <div>
-    <div className="dlg--body">
-      My awesome modalbox!
-    </div>
+    My awesome modalbox!
   </div>
 )
 
