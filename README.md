@@ -66,6 +66,22 @@ The reduxDialog method only requires the name property to work. The rest of the 
 #### `name`: string
 A unique id for this dialog
 
+### Passing a payload to the modal
+
+When dispatching the action to open the dialog, adding a payload as the second parameter to `openDialog` will be available within the dialog as the `payload` property.
+```js
+dispatch(openDialog('accountDialog', { accountName: 'My Account' }));
+
+const BasicDialog = ({ payload }) => (
+  <div>
+    {payload.accountName}
+  </div>
+  <div>
+    My awesome modalbox!
+  </div>
+)
+```
+
 
 ## Tests
 Work in progress

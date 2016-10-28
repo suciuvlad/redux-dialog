@@ -5,7 +5,8 @@ export default (state = [], action) => {
     case c.OPEN_DIALOG:
       let dialogs = Object.assign({}, state.dialogs, {
         [action.name]: {
-          isOpen: true
+          isOpen: true,
+          payload: action.payload
         }
       });
 

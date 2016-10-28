@@ -113,14 +113,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var reduxDialog = function reduxDialog(dialogProps) {
-	  var name = dialogProps.name;
-	  var _dialogProps$onAfterO = dialogProps.onAfterOpen;
-
-	  var _onAfterOpen = _dialogProps$onAfterO === undefined ? function () {} : _dialogProps$onAfterO;
-
-	  var _dialogProps$onReques = dialogProps.onRequestClose;
-
-	  var _onRequestClose = _dialogProps$onReques === undefined ? function () {} : _dialogProps$onReques;
+	  var name = dialogProps.name,
+	      _dialogProps$onAfterO = dialogProps.onAfterOpen,
+	      _onAfterOpen = _dialogProps$onAfterO === undefined ? function () {} : _dialogProps$onAfterO,
+	      _dialogProps$onReques = dialogProps.onRequestClose,
+	      _onRequestClose = _dialogProps$onReques === undefined ? function () {} : _dialogProps$onReques;
 
 	  return function (WrappedComponent) {
 	    var ReduxDialog = function (_Component) {
@@ -129,7 +126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      function ReduxDialog() {
 	        _classCallCheck(this, ReduxDialog);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ReduxDialog).apply(this, arguments));
+	        return _possibleConstructorReturn(this, (ReduxDialog.__proto__ || Object.getPrototypeOf(ReduxDialog)).apply(this, arguments));
 	      }
 
 	      _createClass(ReduxDialog, [{
@@ -147,9 +144,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }(_react.Component);
 
 	    var mapStateToProps = function mapStateToProps(state) {
-	      return {
-	        isOpen: state.dialogs.dialogs && state.dialogs.dialogs[name] && state.dialogs.dialogs[name].isOpen || false
-	      };
+	      if (state.dialogs.dialogs && state.dialogs.dialogs[name]) {
+	        var _state$dialogs$dialog = state.dialogs.dialogs[name],
+	            isOpen = _state$dialogs$dialog.isOpen,
+	            payload = _state$dialogs$dialog.payload;
+
+	        return { isOpen: isOpen, payload: payload };
+	      }
+	      return { isOpen: false };
 	    };
 
 	    var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -227,17 +229,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      content: React.PropTypes.object,
 	      overlay: React.PropTypes.object
 	    }),
+	    portalClassName: React.PropTypes.string,
 	    appElement: React.PropTypes.instanceOf(SafeHTMLElement),
 	    onAfterOpen: React.PropTypes.func,
 	    onRequestClose: React.PropTypes.func,
 	    closeTimeoutMS: React.PropTypes.number,
 	    ariaHideApp: React.PropTypes.bool,
-	    shouldCloseOnOverlayClick: React.PropTypes.bool
+	    shouldCloseOnOverlayClick: React.PropTypes.bool,
+	    role: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function () {
 	    return {
 	      isOpen: false,
+	      portalClassName: 'ReactModalPortal',
 	      ariaHideApp: true,
 	      closeTimeoutMS: 0,
 	      shouldCloseOnOverlayClick: true
@@ -246,7 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  componentDidMount: function() {
 	    this.node = document.createElement('div');
-	    this.node.className = 'ReactModalPortal';
+	    this.node.className = this.props.portalClassName;
 	    document.body.appendChild(this.node);
 	    this.renderPortal(this.props);
 	  },
@@ -386,6 +391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ModalPortal = module.exports = React.createClass({
 
 	  displayName: 'ModalPortal',
+	  shouldClose: null,
 
 	  getDefaultProps: function() {
 	    return {
@@ -463,7 +469,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  focusContent: function() {
-	    this.refs.content.focus();
+	    // Don't steal focus from inner elements
+	    if (!this.contentHasFocus()) {
+	      this.refs.content.focus();
+	    }
 	  },
 
 	  closeWithTimeout: function() {
@@ -493,20 +502,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 
-	  handleOverlayClick: function(event) {
-	    var node = event.target
-
-	    while (node) {
-	      if (node === this.refs.content) return
-	      node = node.parentNode
+	  handleOverlayMouseDown: function(event) {
+	    if (this.shouldClose === null) {
+	      this.shouldClose = true;
 	    }
+	  },
 
-	    if (this.props.shouldCloseOnOverlayClick) {
+	  handleOverlayMouseUp: function(event) {
+	    if (this.shouldClose && this.props.shouldCloseOnOverlayClick) {
 	      if (this.ownerHandlesClose())
 	        this.requestClose(event);
 	      else
 	        this.focusContent();
 	    }
+	    this.shouldClose = null;
+	  },
+
+	  handleContentMouseDown: function(event) {
+	    this.shouldClose = false;
+	  },
+
+	  handleContentMouseUp: function(event) {
+	    this.shouldClose = false;
 	  },
 
 	  requestClose: function(event) {
@@ -520,6 +537,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  shouldBeClosed: function() {
 	    return !this.props.isOpen && !this.state.beforeClose;
+	  },
+
+	  contentHasFocus: function() {
+	    return document.activeElement === this.refs.content || this.refs.content.contains(document.activeElement);
 	  },
 
 	  buildClassName: function(which, additional) {
@@ -540,14 +561,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ref: "overlay",
 	        className: this.buildClassName('overlay', this.props.overlayClassName),
 	        style: Assign({}, overlayStyles, this.props.style.overlay || {}),
-	        onClick: this.handleOverlayClick
+	        onMouseDown: this.handleOverlayMouseDown,
+	        onMouseUp: this.handleOverlayMouseUp
 	      },
 	        div({
 	          ref: "content",
 	          style: Assign({}, contentStyles, this.props.style.content || {}),
 	          className: this.buildClassName('content', this.props.className),
 	          tabIndex: "-1",
-	          onKeyDown: this.handleKeyDown
+	          onKeyDown: this.handleKeyDown,
+	          onMouseDown: this.handleContentMouseDown,
+	          onMouseUp: this.handleContentMouseUp,
+	          role: this.props.role
 	        },
 	          this.props.children
 	        )
@@ -1275,19 +1300,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    funcTag = '[object Function]',
 	    genTag = '[object GeneratorFunction]';
 
-	/**
-	 * The base implementation of `_.property` without support for deep paths.
-	 *
-	 * @private
-	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new accessor function.
-	 */
-	function baseProperty(key) {
-	  return function(object) {
-	    return object == null ? undefined : object[key];
-	  };
-	}
-
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
 
@@ -1296,26 +1308,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
 
 	/** Built-in value references. */
 	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-
-	/**
-	 * Gets the "length" property value of `object`.
-	 *
-	 * **Note:** This function is used to avoid a
-	 * [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792) that affects
-	 * Safari on at least iOS 8.1-8.3 ARM64.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {*} Returns the "length" value.
-	 */
-	var getLength = baseProperty('length');
 
 	/**
 	 * Checks if `value` is likely an `arguments` object.
@@ -1336,7 +1335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * // => false
 	 */
 	function isArguments(value) {
-	  // Safari 8.1 incorrectly makes `arguments.callee` enumerable in strict mode.
+	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
 	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
 	    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
 	}
@@ -1367,7 +1366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * // => false
 	 */
 	function isArrayLike(value) {
-	  return value != null && isLength(getLength(value)) && !isFunction(value);
+	  return value != null && isLength(value.length) && !isFunction(value);
 	}
 
 	/**
@@ -1418,8 +1417,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function isFunction(value) {
 	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
-	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  // in Safari 8-9 which returns 'object' for typed array and other constructors.
 	  var tag = isObject(value) ? objectToString.call(value) : '';
 	  return tag == funcTag || tag == genTag;
 	}
@@ -1427,16 +1425,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Checks if `value` is a valid array-like length.
 	 *
-	 * **Note:** This function is loosely based on
-	 * [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+	 * **Note:** This method is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
 	 *
 	 * @static
 	 * @memberOf _
 	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a valid length,
-	 *  else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
 	 * @example
 	 *
 	 * _.isLength(3);
@@ -1458,7 +1455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Checks if `value` is the
-	 * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
 	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
@@ -2174,10 +2171,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	function openDialog(name) {
+	function openDialog(name, payload) {
 	  return {
 	    type: c.OPEN_DIALOG,
-	    name: name
+	    name: name,
+	    payload: payload
 	  };
 	}
 
@@ -2221,13 +2219,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 
 	  switch (action.type) {
 	    case c.OPEN_DIALOG:
 	      var dialogs = _extends({}, state.dialogs, _defineProperty({}, action.name, {
-	        isOpen: true
+	        isOpen: true,
+	        payload: action.payload
 	      }));
 
 	      return _extends({}, state, {

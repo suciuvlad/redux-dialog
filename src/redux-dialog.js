@@ -22,11 +22,13 @@ const reduxDialog = (dialogProps) => {
       }
     }
 
-    const mapStateToProps = (state) => ({
-      isOpen: (state.dialogs.dialogs
-        && state.dialogs.dialogs[name]
-        && state.dialogs.dialogs[name].isOpen) || false
-    })
+    const mapStateToProps = (state) => {
+      if(state.dialogs.dialogs && state.dialogs.dialogs[name]) {
+        const { isOpen, payload } = state.dialogs.dialogs[name];
+        return { isOpen, payload };
+      }
+      return { isOpen: false };
+    };
 
     const mapDispatchToProps = (dispatch) => ({
       onAfterOpen: () => {
