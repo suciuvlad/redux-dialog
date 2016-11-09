@@ -150,7 +150,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var dialogs = state.dialogReducer.dialogs;
 
 
-	      if (dialogs && dialogs[name].isOpen !== undefined) return { isOpen: dialogs[name].isOpen };
+	      if (dialogs && dialogs.hasOwnProperty(name)) {
+	        var isOpen = dialogs[name].isOpen;
+	        if (isOpen !== undefined) return { isOpen: isOpen };
+	      }
 
 	      return {};
 	    };

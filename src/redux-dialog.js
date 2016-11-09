@@ -27,8 +27,10 @@ const reduxDialog = (defaults) => {
         dialogReducer: { dialogs }
       } = state;
 
-      if (dialogs && dialogs[name].isOpen !== undefined)
-        return { isOpen: dialogs[name].isOpen }
+      if (dialogs && dialogs.hasOwnProperty(name)) {
+        const { isOpen } = dialogs[name];
+        if (isOpen !== undefined) return { isOpen };
+      }
 
       return {};
     };
