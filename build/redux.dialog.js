@@ -146,15 +146,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return ReduxDialog;
 	    }(_react.Component);
 
-	    var mapStateToProps = function mapStateToProps(state) {
-	      var isOpen = defaults.isOpen;
-
+	    var mapStateToProps = function mapStateToProps(state, props) {
 	      var dialogs = state.dialogReducer.dialogs;
 
 
-	      if (dialogs && dialogs[name].isOpen !== undefined) isOpen = dialogs[name].isOpen;
+	      if (dialogs && dialogs[name].isOpen !== undefined) return { isOpen: dialogs[name].isOpen };
 
-	      return { isOpen: isOpen };
+	      return {};
 	    };
 
 	    var mapDispatchToProps = function mapDispatchToProps(dispatch) {

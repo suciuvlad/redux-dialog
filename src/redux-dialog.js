@@ -22,17 +22,15 @@ const reduxDialog = (defaults) => {
       }
     }
 
-    const mapStateToProps = (state) => {
-      let isOpen = defaults.isOpen;
-
+    const mapStateToProps = (state, props) => {
       const {
         dialogReducer: { dialogs }
       } = state;
 
       if (dialogs && dialogs[name].isOpen !== undefined)
-        isOpen = dialogs[name].isOpen;
+        return { isOpen: dialogs[name].isOpen }
 
-      return { isOpen };
+      return {};
     };
 
     const mapDispatchToProps = (dispatch) => ({

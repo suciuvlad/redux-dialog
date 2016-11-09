@@ -21,7 +21,6 @@ const BasicDialog = () => (
 
 const Dialog = reduxDialog({
   name: 'signupDialog',
-  isOpen: true,
 
   onRequestClose: function () {
     console.log('Dialog was closed');
