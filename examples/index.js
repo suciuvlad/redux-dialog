@@ -20,21 +20,13 @@ const BasicDialog = () => (
 )
 
 const Dialog = reduxDialog({
-  name: 'signupDialog',
-
-  onRequestClose: function () {
-    console.log('Dialog was closed');
-  },
-
-  onAfterOpen: function () {
-    console.log('Dialog was opened');
-  }
+  name: 'signupDialog'
 })(BasicDialog);
 
 const App = () => (
   <Provider store={store}>
     <div>
-      <Dialog />
+      <Dialog onAfterOpen={ () => console.log('On After Open') } onRequestClose={ () => console.log('On Request Close') } />
       <a onClick={() => store.dispatch(openDialog('signupDialog'))} href="#">Open Dialog</a>
     </div>
   </Provider>

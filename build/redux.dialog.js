@@ -114,13 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var reduxDialog = function reduxDialog(defaults) {
 	  var name = defaults.name;
-	  var _defaults$onAfterOpen = defaults.onAfterOpen;
 
-	  var _onAfterOpen = _defaults$onAfterOpen === undefined ? function () {} : _defaults$onAfterOpen;
-
-	  var _defaults$onRequestCl = defaults.onRequestClose;
-
-	  var _onRequestClose = _defaults$onRequestCl === undefined ? function () {} : _defaults$onRequestCl;
 
 	  return function (WrappedComponent) {
 	    var ReduxDialog = function (_Component) {
@@ -152,20 +146,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (dialogs && dialogs.hasOwnProperty(name)) {
 	        var isOpen = dialogs[name].isOpen;
+
 	        if (isOpen !== undefined) return { isOpen: isOpen };
 	      }
 
 	      return {};
 	    };
 
-	    var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	    var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
 	      return {
 	        onAfterOpen: function onAfterOpen() {
-	          _onAfterOpen();
+	          if (props.onAfterOpen) props.onAfterOpen();
 	        },
 
 	        onRequestClose: function onRequestClose() {
-	          _onRequestClose();
+	          if (props.onRequestClose) props.onRequestClose();
 	          dispatch((0, _actions.closeDialog)(name));
 	        }
 	      };

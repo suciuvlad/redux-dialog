@@ -6,9 +6,7 @@ import { closeDialog } from './actions';
 const reduxDialog = (defaults) => {
 
   const {
-    name,
-    onAfterOpen = () => {},
-    onRequestClose = () => {}
+    name
   } = defaults;
 
   return((WrappedComponent) => {
@@ -35,13 +33,13 @@ const reduxDialog = (defaults) => {
       return {};
     };
 
-    const mapDispatchToProps = (dispatch) => ({
+    const mapDispatchToProps = (dispatch, props) => ({
       onAfterOpen: () => {
-        onAfterOpen();
+        if (props.onAfterOpen) props.onAfterOpen();
       },
 
       onRequestClose: () => {
-        onRequestClose();
+        if (props.onRequestClose) props.onRequestClose();
         dispatch(closeDialog(name))
       }
     })
