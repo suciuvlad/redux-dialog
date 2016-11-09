@@ -112,15 +112,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var reduxDialog = function reduxDialog(dialogProps) {
-	  var name = dialogProps.name;
-	  var _dialogProps$onAfterO = dialogProps.onAfterOpen;
+	var reduxDialog = function reduxDialog(defaults) {
+	  var name = defaults.name;
+	  var _defaults$onAfterOpen = defaults.onAfterOpen;
 
-	  var _onAfterOpen = _dialogProps$onAfterO === undefined ? function () {} : _dialogProps$onAfterO;
+	  var _onAfterOpen = _defaults$onAfterOpen === undefined ? function () {} : _defaults$onAfterOpen;
 
-	  var _dialogProps$onReques = dialogProps.onRequestClose;
+	  var _defaults$onRequestCl = defaults.onRequestClose;
 
-	  var _onRequestClose = _dialogProps$onReques === undefined ? function () {} : _dialogProps$onReques;
+	  var _onRequestClose = _defaults$onRequestCl === undefined ? function () {} : _defaults$onRequestCl;
 
 	  return function (WrappedComponent) {
 	    var ReduxDialog = function (_Component) {
@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function render() {
 	          return _react2.default.createElement(
 	            _reactModal2.default,
-	            _extends({}, dialogProps, this.props),
+	            _extends({}, defaults, this.props),
 	            _react2.default.createElement(WrappedComponent, this.props)
 	          );
 	        }
@@ -147,9 +147,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }(_react.Component);
 
 	    var mapStateToProps = function mapStateToProps(state) {
-	      return {
-	        isOpen: state.dialogs.dialogs && state.dialogs.dialogs[name] && state.dialogs.dialogs[name].isOpen || false
-	      };
+	      var isOpen = defaults.isOpen;
+
+	      var dialogs = state.dialogReducer.dialogs;
+
+
+	      if (dialogs && dialogs[name].isOpen !== undefined) isOpen = dialogs[name].isOpen;
+
+	      return { isOpen: isOpen };
 	    };
 
 	    var mapDispatchToProps = function mapDispatchToProps(dispatch) {

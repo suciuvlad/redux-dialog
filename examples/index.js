@@ -5,7 +5,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 const reducers = {
-  dialogs: dialogReducer
+  dialogReducer: dialogReducer
 }
 
 const reducer = combineReducers(reducers);
@@ -21,6 +21,7 @@ const BasicDialog = () => (
 
 const Dialog = reduxDialog({
   name: 'signupDialog',
+  isOpen: true,
 
   onRequestClose: function () {
     console.log('Dialog was closed');
