@@ -3,30 +3,37 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import { closeDialog } from './actions';
 
-const reduxDialog = (dialogProps) => {
+const reduxDialog = (defaults) => {
 
   const {
     name,
     onAfterOpen = () => {},
     onRequestClose = () => {}
-  } = dialogProps;
+  } = defaults;
 
   return((WrappedComponent) => {
     class ReduxDialog extends Component {
       render () {
         return (
-          <Modal {...dialogProps} {...this.props}>
+          <Modal {...defaults} {...this.props}>
             <WrappedComponent {...this.props} />
           </Modal>
         );
       }
     }
 
-    const mapStateToProps = (state) => ({
-      isOpen: (state.dialogs.dialogs
-        && state.dialogs.dialogs[name]
-        && state.dialogs.dialogs[name].isOpen) || false
-    })
+    const mapStateToProps = (state) => {
+      let isOpen = defaults.isOpen;
+
+      const {
+        dialogReducer: { dialogs }
+      } = state;
+
+      if (dialogs && dialogs[name].isOpen !== undefined)
+        isOpen = dialogs[name].isOpen;
+
+      return { isOpen };
+    };
 
     const mapDispatchToProps = (dispatch) => ({
       onAfterOpen: () => {
