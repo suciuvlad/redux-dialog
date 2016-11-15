@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
-import { closeDialog } from './actions';
+import { closeDialog, openDialog } from './actions';
 
 const reduxDialog = (defaults) => {
 
@@ -35,11 +35,12 @@ const reduxDialog = (defaults) => {
 
     const mapDispatchToProps = (dispatch, props) => ({
       onAfterOpen: () => {
-        if (props.onAfterOpen) props.onAfterOpen();
+        props.onAfterOpen && props.onAfterOpen();
+        dispatch(openDialog(name))
       },
 
       onRequestClose: () => {
-        if (props.onRequestClose) props.onRequestClose();
+        props.onRequestClose && props.onRequestClose();
         dispatch(closeDialog(name))
       }
     })
