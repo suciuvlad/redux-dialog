@@ -144,11 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var dialogs = state.dialogReducer.dialogs;
 
 
-	      if (dialogs && dialogs.hasOwnProperty(name)) {
-	        var isOpen = dialogs[name].isOpen;
-
-	        if (isOpen !== undefined) return { isOpen: isOpen };
-	      }
+	      if (dialogs && dialogs.hasOwnProperty(name)) return { isOpen: true };
 
 	      return {};
 	    };
@@ -156,11 +152,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
 	      return {
 	        onAfterOpen: function onAfterOpen() {
-	          if (props.onAfterOpen) props.onAfterOpen();
+	          props.onAfterOpen && props.onAfterOpen();
+	          dispatch((0, _actions.openDialog)(name));
 	        },
 
 	        onRequestClose: function onRequestClose() {
-	          if (props.onRequestClose) props.onRequestClose();
+	          props.onRequestClose && props.onRequestClose();
 	          dispatch((0, _actions.closeDialog)(name));
 	        }
 	      };
@@ -2227,23 +2224,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  switch (action.type) {
 	    case c.OPEN_DIALOG:
-	      var dialogs = _extends({}, state.dialogs, _defineProperty({}, action.name, {
-	        isOpen: true
-	      }));
-
 	      return _extends({}, state, {
-	        dialogs: dialogs
+	        dialogs: _defineProperty({}, action.name, true)
 	      });
 	      break;
 
 	    case c.CLOSE_DIALOG:
-	      var dialogss = _extends({}, state.dialogs, _defineProperty({}, action.name, {
-	        isOpen: false
-	      }));
-
-	      return _extends({}, state, {
-	        dialogs: dialogss
-	      });
+	      delete state.dialogs[action.name];
+	      return _extends({}, state);
 	      break;
 
 	    default:
