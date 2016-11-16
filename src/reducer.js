@@ -3,27 +3,16 @@ import * as c from './constants';
 export default (state = [], action) => {
   switch (action.type) {
     case c.OPEN_DIALOG:
-      let dialogs = Object.assign({}, state.dialogs, {
-        [action.name]: {
-          isOpen: true
-        }
-      });
-
       return Object.assign({}, state, {
-        dialogs: dialogs
-      });
+        dialogs: {
+          [action.name]: true
+        }
+      })
     break;
 
     case c.CLOSE_DIALOG:
-      let dialogss = Object.assign({}, state.dialogs, {
-        [action.name]: {
-          isOpen: false
-        }
-      });
-
-      return Object.assign({}, state, {
-        dialogs: dialogss
-      });
+      delete state.dialogs[action.name];
+      return Object.assign({}, state);
     break;
 
     default:
