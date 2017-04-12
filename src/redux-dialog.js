@@ -21,11 +21,9 @@ const reduxDialog = (defaults) => {
     }
 
     const mapStateToProps = (state, props) => {
-      const {
-        dialogReducer: { dialogs }
-      } = state;
+      const reducer = typeof state.get === 'function' ? state.get('dialogReducer') : state.dialogReducer;
 
-      if (dialogs && dialogs.hasOwnProperty(name)) return { isOpen: true };
+      if (reducer.dialogs && reducer.dialogs.hasOwnProperty(name)) return { isOpen: true };
 
       return {};
     };
