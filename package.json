@@ -17,8 +17,8 @@
   "author": "Vlad Suciu",
   "license": "ISC",
   "dependencies": {
-    "react": "15.3.0",
-    "react-dom": "15.3.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
     "react-modal": "1.4.0",
     "react-redux": "4.4.5",
     "redux": "3.5.2"
