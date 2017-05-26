@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.closeDialog = exports.openDialog = exports.dialogReducer = undefined;
+	exports.closeAllDialogs = exports.closeDialog = exports.openDialog = exports.dialogReducer = undefined;
 
 	var _reduxDialog = __webpack_require__(1);
 
@@ -77,6 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.dialogReducer = _reducer2.default;
 	exports.openDialog = _actions.openDialog;
 	exports.closeDialog = _actions.closeDialog;
+	exports.closeAllDialogs = _actions.closeAllDialogs;
 
 /***/ },
 /* 1 */
