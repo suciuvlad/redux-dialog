@@ -13,3 +13,9 @@ export function closeDialog(name) {
     name: name
   }
 }
+
+export function closeAllDialogs() {
+  return {
+    type: c.CLOSE_ALL_DIALOGS
+  }
+}
