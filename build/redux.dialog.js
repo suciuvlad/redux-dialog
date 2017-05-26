@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reduxDialog2 = _interopRequireDefault(_reduxDialog);
 
-	var _reducer = __webpack_require__(27);
+	var _reducer = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./reducer\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -2135,6 +2135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.openDialog = openDialog;
 	exports.closeDialog = closeDialog;
+	exports.closeAllDialogs = closeAllDialogs;
 
 	var _constants = __webpack_require__(26);
 
@@ -2156,6 +2157,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	}
 
+	function closeAllDialogs() {
+	  return {
+	    type: c.CLOSE_ALL_DIALOGS
+	  };
+	}
+
 /***/ },
 /* 26 */
 /***/ function(module, exports) {
@@ -2167,47 +2174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	var OPEN_DIALOG = exports.OPEN_DIALOG = 'OPEN_DIALOG';
 	var CLOSE_DIALOG = exports.CLOSE_DIALOG = 'CLOSE_DIALOG';
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _constants = __webpack_require__(26);
-
-	var c = _interopRequireWildcard(_constants);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case c.OPEN_DIALOG:
-	      return _extends({}, state, {
-	        dialogs: _defineProperty({}, action.name, true)
-	      });
-	      break;
-
-	    case c.CLOSE_DIALOG:
-	      delete state.dialogs[action.name];
-	      return _extends({}, state);
-	      break;
-
-	    default:
-	      return state;
-	  }
-	};
+	var CLOSE_ALL_DIALOGS = exports.CLOSE_ALL_DIALOGS = 'CLOSE_ALL_DIALOGS';
 
 /***/ }
 /******/ ])

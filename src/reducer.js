@@ -17,7 +17,7 @@ export default (state = {dialogs: {}}, action) => {
     break;
 
     case c.CLOSE_ALL_DIALOGS:
-      return Object.assign({}, state, {dialogs: {})})
+      return Object.assign({}, state, {dialogs: {}})
     break;
 
     default:
