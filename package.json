@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --config webpack.config.js --content-base examples/ --progress",
-    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress"
+    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress",
+    "dist": "babel src --out-dir dist"
   },
   "author": "Vlad Suciu",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "redux": "^3.5.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-assign": "^6.8.0",
