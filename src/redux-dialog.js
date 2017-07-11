@@ -15,7 +15,7 @@ const reduxDialog = (dialogProps) => {
     class ReduxDialog extends Component {
       render () {
         return (
-          <Modal {...dialogProps} {...this.props}>
+          <Modal contentLabel={name} {...dialogProps} {...this.props}>
             <WrappedComponent {...this.props} />
           </Modal>
         );

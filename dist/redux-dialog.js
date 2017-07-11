@@ -50,7 +50,7 @@ var reduxDialog = function reduxDialog(dialogProps) {
         value: function render() {
           return _react2.default.createElement(
             _reactModal2.default,
-            _extends({}, dialogProps, this.props),
+            _extends({ contentLabel: name }, dialogProps, this.props),
             _react2.default.createElement(WrappedComponent, this.props)
           );
         }
