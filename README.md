@@ -3,19 +3,11 @@
 
 A Higher Order Component using react-redux to keep dialog state in a Redux store
 
-## Example
-
-Clone this repo then run:
-```javascript
-npm install
-npm start
-```
-
-## Install
+## Using in your project
 
 The easiest way to use redux-dialog is to install it from NPM and include it in your own React build process
 
-```npm install --save redux-dialog```
+```yarn add --save redux-dialog```
 
 ## Usage
 
@@ -66,6 +58,18 @@ The reduxDialog method only requires the name property to work. The rest of the 
 #### `name`: string
 A unique id for this dialog
 
+
+## Working on the source code
+
+Clone this repo then run:
+```javascript
+yarn install
+yarn start
+```
+
+## Building a release
+
+`yarn build` should do the trick.
 
 ## Tests
 Work in progress
