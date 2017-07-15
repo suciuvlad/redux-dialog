@@ -37,13 +37,14 @@ const reduxDialog = (dialogProps) => {
 
       onRequestClose: (event) => {
         onRequestClose(event);
-        dispatch(closeDialog(name))
+        dispatch(closeDialog(name));
+        return false;
       }
-    })
+    });
 
     return connect(mapStateToProps, mapDispatchToProps)(ReduxDialog);
 
   });
-}
+};
 
 export default reduxDialog;

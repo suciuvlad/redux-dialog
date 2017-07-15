@@ -15,11 +15,11 @@ The first step is to combine the redux-dialog reducer with your own application 
 
 ### Step 1
 ```js
-import {createStore, combineReducers} from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { dialogReducer } from 'redux-dialog';
 const reducers = {
   // Other reducers here
-  dialogReducer: dialogReducer
+  dialogs: dialogReducer
 }
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
@@ -38,7 +38,7 @@ const BasicDialog = () => (
 )
 
 const Dialog = reduxDialog({
-  name: 'signupDialog' // unique name - you can't have two dialogs with the same name
+  name: 'Sign up dialog' // unique name - you can't have two dialogs with the same name (will be used as aria-label as well)
 })(BasicDialog);
 ```
 
@@ -48,7 +48,7 @@ Use redux-dialog's actions to show and hide the dialog
 ```js
 import { openDialog, closeDialog } from 'redux-dialog';
 const MyComponent = () => (
-  <a href="#" onClick={() => dispatch(openDialog('signupDialog'))}></a>
+  <a href="#" onClick={() => dispatch(openDialog('Sign up dialog'))}></a>
 )
 ```
 
@@ -82,6 +82,8 @@ Clone this repo then run:
 yarn install
 yarn start
 ```
+
+Then open http://localhost:8080 to see a working example.
 
 ## Building a release
 
