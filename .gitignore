@@ -1,12 +1,6 @@
-<<<<<<< HEAD
+.DS_Store
 .idea
 node_modules
-=======
-# Include your project-specific ignores in this file
-# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 
-node_modules
 npm-debug.log*
 *.swp
-.DS_Store
->>>>>>> eb54de6a12e970b541faf3b3bb4ec5f2912e9fc4
