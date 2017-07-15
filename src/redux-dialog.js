@@ -31,7 +31,6 @@ const reduxDialog = (defaults) => {
     const mapDispatchToProps = (dispatch, props) => ({
       onAfterOpen: () => {
         props.onAfterOpen && props.onAfterOpen();
-        dispatch(openDialog(name))
       },
 
       onRequestClose: () => {
