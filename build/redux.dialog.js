@@ -113,9 +113,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var reduxDialog = function reduxDialog(defaults) {
-	  var name = defaults.name;
-
+	var reduxDialog = function reduxDialog(dialogProps) {
+	  var name = dialogProps.name,
+	      _dialogProps$onAfterO = dialogProps.onAfterOpen,
+	      _onAfterOpen = _dialogProps$onAfterO === undefined ? function () {} : _dialogProps$onAfterO,
+	      _dialogProps$onReques = dialogProps.onRequestClose,
+	      _onRequestClose = _dialogProps$onReques === undefined ? function (event) {} : _dialogProps$onReques;
 
 	  return function (WrappedComponent) {
 	    var ReduxDialog = function (_Component) {
@@ -132,7 +135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function render() {
 	          return _react2.default.createElement(
 	            _reactModal2.default,
-	            _extends({}, defaults, this.props),
+	            _extends({ contentLabel: name }, dialogProps, this.props),
 	            _react2.default.createElement(WrappedComponent, this.props)
 	          );
 	        }
@@ -141,22 +144,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return ReduxDialog;
 	    }(_react.Component);
 
-	    var mapStateToProps = function mapStateToProps(state, props) {
-	      var reducer = typeof state.get === 'function' ? state.get('dialogReducer') : state.dialogReducer;
+	    var mapStateToProps = function mapStateToProps(state) {
+	      if (state.dialogs.dialogs && state.dialogs.dialogs[name]) {
+	        var _state$dialogs$dialog = state.dialogs.dialogs[name],
+	            isOpen = _state$dialogs$dialog.isOpen,
+	            payload = _state$dialogs$dialog.payload;
 
-	      if (reducer.dialogs && reducer.dialogs.hasOwnProperty(name)) return { isOpen: true };
-
-	      return {};
+	        return { isOpen: isOpen, payload: payload };
+	      }
+	      return { isOpen: false };
 	    };
 
-	    var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
+	    var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	      return {
 	        onAfterOpen: function onAfterOpen() {
-	          props.onAfterOpen && props.onAfterOpen();
+	          _onAfterOpen();
 	        },
 
 	        onRequestClose: function onRequestClose(event) {
-	          props.onRequestClose && props.onRequestClose(event);
+	          _onRequestClose(event);
 	          dispatch((0, _actions.closeDialog)(name));
 	        }
 	      };
@@ -2144,10 +2150,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	function openDialog(name) {
+	function openDialog(name, payload) {
 	  return {
 	    type: c.OPEN_DIALOG,
-	    name: name
+	    name: name,
+	    payload: payload
 	  };
 	}
 
@@ -2203,15 +2210,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  switch (action.type) {
 	    case c.OPEN_DIALOG:
+	      var dialogsAfterOpen = _extends({}, state.dialogs, _defineProperty({}, action.name, {
+	        isOpen: true,
+	        payload: action.payload
+	      }));
+
 	      return _extends({}, state, {
-	        dialogs: _extends({}, state.dialogs, _defineProperty({}, action.name, true))
+	        dialogs: dialogsAfterOpen
 	      });
 	      break;
 
 	    case c.CLOSE_DIALOG:
-	      var stateCopy = _extends({}, state);
-	      delete stateCopy.dialogs[action.name];
-	      return _extends({}, stateCopy);
+	      var dialogsAfterClose = _extends({}, state.dialogs, _defineProperty({}, action.name, {
+	        isOpen: false
+	      }));
+
+	      return _extends({}, state, {
+	        dialogs: dialogsAfterClose
+	      });
 	      break;
 
 	    case c.CLOSE_ALL_DIALOGS:
