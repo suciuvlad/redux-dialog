@@ -152,11 +152,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return {
 	        onAfterOpen: function onAfterOpen() {
 	          props.onAfterOpen && props.onAfterOpen();
-	          dispatch((0, _actions.openDialog)(name));
 	        },
 
-	        onRequestClose: function onRequestClose() {
-	          props.onRequestClose && props.onRequestClose();
+	        onRequestClose: function onRequestClose(event) {
+	          props.onRequestClose && props.onRequestClose(event);
 	          dispatch((0, _actions.closeDialog)(name));
 	        }
 	      };
