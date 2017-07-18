@@ -1,6 +1,6 @@
 {
   "name": "redux-dialog-extended",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Higher Order Component using react-redux to keep dialog state in a Redux store",
   "main": "build/redux.dialog.js",
   "repository": {
@@ -12,10 +12,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --config webpack.config.js --content-base examples/ --progress",
-    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress && babel src --out-dir dist"
+    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress && babel src --out-dir dist",
+    "prepublish": "npm run build"
   },
   "author": "Vlad Suciu",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
