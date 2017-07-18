@@ -8,7 +8,7 @@ const reduxDialog = (dialogProps) => {
   const {
     name,
     onAfterOpen = () => {},
-    onRequestClose = () => {}
+    onRequestClose = (event) => {}
   } = dialogProps;
 
   return((WrappedComponent) => {
@@ -35,15 +35,16 @@ const reduxDialog = (dialogProps) => {
         onAfterOpen();
       },
 
-      onRequestClose: () => {
-        onRequestClose();
-        dispatch(closeDialog(name))
+      onRequestClose: (event) => {
+        onRequestClose(event);
+        dispatch(closeDialog(name));
+        return false;
       }
-    })
+    });
 
     return connect(mapStateToProps, mapDispatchToProps)(ReduxDialog);
 
   });
-}
+};
 
 export default reduxDialog;

@@ -1,26 +1,25 @@
 {
-  "name": "redux-dialog",
-  "version": "0.0.7",
+  "name": "redux-dialog-extended",
+  "version": "0.1.0",
   "description": "A Higher Order Component using react-redux to keep dialog state in a Redux store",
   "main": "build/redux.dialog.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/suciuvlad/redux-dialog.git"
+    "url": "https://github.com/JakeDluhy/redux-dialog.git"
   },
-  "homepage": "https://github.com/suciuvlad/redux-dialog",
-  "bugs": "https://github.com/suciuvlad/redux-dialog/issues",
+  "homepage": "https://github.com/JakeDluhy/redux-dialog",
+  "bugs": "https://github.com/JakeDluhy/redux-dialog/issues",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --config webpack.config.js --content-base examples/ --progress",
-    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress",
-    "dist": "babel src --out-dir dist"
+    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress && babel src --out-dir dist"
   },
   "author": "Vlad Suciu",
   "license": "ISC",
   "dependencies": {
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "react-modal": "^1.4.0",
+    "react-modal": "^2.2.0",
     "react-redux": "^5.0.5",
     "redux": "^3.5.2"
   },
@@ -34,6 +33,8 @@
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.8.0",
+    "react": "^15.3.0",
+    "react-redux": "^5.0.5",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
@@ -52,5 +53,9 @@
     "react-component",
     "modal",
     "dialog"
+  ],
+  "files": [
+    "build",
+    "src"
   ]
 }
