@@ -1,48 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
-import { closeDialog, openDialog } from './actions';
+import { closeDialog } from './actions';
 
-const reduxDialog = (defaults) => {
+const reduxDialog = (dialogProps) => {
 
   const {
-    name
-  } = defaults;
+    name,
+    onAfterOpen = () => {},
+    onRequestClose = (event) => {}
+  } = dialogProps;
 
   return((WrappedComponent) => {
     class ReduxDialog extends Component {
       render () {
         return (
-          <Modal {...defaults} {...this.props}>
+          <Modal contentLabel={name} {...dialogProps} {...this.props}>
             <WrappedComponent {...this.props} />
           </Modal>
         );
       }
     }
 
-    const mapStateToProps = (state, props) => {
-      const reducer = typeof state.get === 'function' ? state.get('dialogReducer') : state.dialogReducer;
-
-      if (reducer.dialogs && reducer.dialogs.hasOwnProperty(name)) return { isOpen: true };
-
-      return {};
+    const mapStateToProps = (state) => {
+      if(state.dialogs.dialogs && state.dialogs.dialogs[name]) {
+        const { isOpen, payload } = state.dialogs.dialogs[name];
+        return { isOpen, payload };
+      }
+      return { isOpen: false };
     };
 
-    const mapDispatchToProps = (dispatch, props) => ({
+    const mapDispatchToProps = (dispatch) => ({
       onAfterOpen: () => {
-        props.onAfterOpen && props.onAfterOpen();
-        dispatch(openDialog(name))
+        onAfterOpen();
       },
 
-      onRequestClose: () => {
-        props.onRequestClose && props.onRequestClose();
-        dispatch(closeDialog(name))
+      onRequestClose: (event) => {
+        onRequestClose(event);
+        dispatch(closeDialog(name));
+        return false;
       }
-    })
+    });
 
     return connect(mapStateToProps, mapDispatchToProps)(ReduxDialog);
 
   });
-}
+};
 
 export default reduxDialog;
