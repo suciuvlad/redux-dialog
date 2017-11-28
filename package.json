@@ -1,5 +1,5 @@
 {
-  "name": "redux-dialog-extended",
+  "name": "redux-dialog",
   "version": "0.1.1",
   "description": "A Higher Order Component using react-redux to keep dialog state in a Redux store",
   "main": "build/redux.dialog.js",
