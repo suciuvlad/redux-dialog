@@ -1,6 +1,6 @@
 # Contributing
 
-We are open to, and grateful for, any contributions made by the community. By contributing to `redux-dialog-extended`, you agree to abide by the [code of conduct](./CODE_OF_CONDUCT.md).
+We are open to, and grateful for, any contributions made by the community. By contributing to `redux-dialog`, you agree to abide by the [code of conduct](./CODE_OF_CONDUCT.md).
 
 ## Reporting Issues
 

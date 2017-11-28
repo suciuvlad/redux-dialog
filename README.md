@@ -1,5 +1,5 @@
-[![NPM](https://img.shields.io/npm/v/redux-dialog-extended.svg)](https://www.npmjs.com/package/redux-dialog-extended)
-# redux-dialog-extended
+[![NPM](https://img.shields.io/npm/v/redux-dialog.svg)](https://www.npmjs.com/package/redux-dialog)
+# redux-dialog
 
 A Higher Order Component using react-redux to keep dialog state in a Redux store.
 
@@ -7,26 +7,26 @@ This package was forked from [redux-dialog](https://github.com/suciuvlad/redux-d
 
 ## Using in your project
 
-The easiest way to use redux-dialog-extended is to install it from NPM and include it in your own React build process
+The easiest way to use redux-dialog is to install it from NPM and include it in your own React build process
 
 ```
-npm install --save redux-dialog-extended
+npm install --save redux-dialog
 ```
 
 or use yarn
 
 ```
-yarn add --save redux-dialog-extended
+yarn add --save redux-dialog
 ```
 
 ## Usage
 
-The first step is to combine the redux-dialog-extended reducer with your own application reducers
+The first step is to combine the redux-dialog reducer with your own application reducers
 
 ### Step 1
 ```js
 import { createStore, combineReducers } from 'redux';
-import { dialogReducer } from 'redux-dialog-extended';
+import { dialogReducer } from 'redux-dialog';
 const reducers = {
   // Other reducers here
   dialogs: dialogReducer
@@ -39,7 +39,7 @@ const store = createStore(reducer);
 
 Decorate your component with reduxDialog.
 ```js
-import reduxDialog from 'redux-dialog-extended';
+import reduxDialog from 'redux-dialog';
 
 const BasicDialog = () => (
   <div>
@@ -54,9 +54,9 @@ const Dialog = reduxDialog({
 
 ### Step 3
 
-Use redux-dialog-extended's actions to show and hide the dialog
+Use redux-dialog's actions to show and hide the dialog
 ```js
-import { openDialog, closeDialog } from 'redux-dialog-extended';
+import { openDialog, closeDialog } from 'redux-dialog';
 const MyComponent = () => (
   <a href="#" onClick={() => dispatch(openDialog('Sign up dialog'))}></a>
 )
