@@ -5,10 +5,10 @@
   "main": "build/redux.dialog.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JakeDluhy/redux-dialog.git"
+    "url": "https://github.com/suciuvlad/redux-dialog.git"
   },
-  "homepage": "https://github.com/JakeDluhy/redux-dialog",
-  "bugs": "https://github.com/JakeDluhy/redux-dialog/issues",
+  "homepage": "https://github.com/suciuvlad/redux-dialog",
+  "bugs": "https://github.com/suciuvlad/redux-dialog/issues",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/.bin/webpack-dev-server --config webpack.config.js --content-base examples/ --progress",
