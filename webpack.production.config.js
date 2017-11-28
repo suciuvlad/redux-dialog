@@ -13,30 +13,18 @@ module.exports = {
 
   externals: [
     'classnames',
-    'flex.dialog',
     'react',
     'react-dom',
     'react-redux',
-    'jquery',
     'redux'
   ],
 
-  // externals: {
-  //   react: 'React',
-  //   'classnames': 'classnames',
-  //   'react-redux': 'react-redux',
-  //   'jquery': 'jquery',
-  //   'redux': 'redux',
-  //   'flex.dialog': 'flex.dialog',
-  //   'react-dom': 'ReactDOM'
-  // },
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: 'babel-loader'
       }
     ]
   },

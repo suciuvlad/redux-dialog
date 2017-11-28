@@ -11,16 +11,11 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
-      },
-
-      {
-        test: /\.scss$/,
-        loader: 'style!css!sass'
+        use: 'babel-loader'
       }
     ]
   },
@@ -33,7 +28,6 @@ module.exports = {
 
   devServer: {
     contentBase: "./public",
-    colors: true,
     historyApiFallback: true,
     inline: true
   }
