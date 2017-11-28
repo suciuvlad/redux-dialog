@@ -1,33 +1,35 @@
-[![NPM](https://img.shields.io/npm/v/redux-dialog.svg)](https://www.npmjs.com/package/redux-dialog)
-# redux-dialog
+[![NPM](https://img.shields.io/npm/v/redux-dialog-extended.svg)](https://www.npmjs.com/package/redux-dialog-extended)
+# redux-dialog-extended
 
-A Higher Order Component using react-redux to keep dialog state in a Redux store
+A Higher Order Component using react-redux to keep dialog state in a Redux store.
 
-## Example
+This package was forked from [redux-dialog](https://github.com/suciuvlad/redux-dialog).
 
-Clone this repo then run:
-```javascript
-npm install
-npm start
+## Using in your project
+
+The easiest way to use redux-dialog-extended is to install it from NPM and include it in your own React build process
+
+```
+npm install --save redux-dialog-extended
 ```
 
-## Install
+or use yarn
 
-The easiest way to use redux-dialog is to install it from NPM and include it in your own React build process
-
-```npm install --save redux-dialog```
+```
+yarn add --save redux-dialog-extended
+```
 
 ## Usage
 
-The first step is to combine the redux-dialog reducer with your own application reducers
+The first step is to combine the redux-dialog-extended reducer with your own application reducers
 
 ### Step 1
 ```js
-import {createStore, combineReducers} from 'redux';
-import { dialogReducer } from 'redux-dialog';
+import { createStore, combineReducers } from 'redux';
+import { dialogReducer } from 'redux-dialog-extended';
 const reducers = {
   // Other reducers here
-  dialogReducer: dialogReducer
+  dialogs: dialogReducer
 }
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
@@ -37,7 +39,7 @@ const store = createStore(reducer);
 
 Decorate your component with reduxDialog.
 ```js
-import reduxDialog from 'redux-dialog';
+import reduxDialog from 'redux-dialog-extended';
 
 const BasicDialog = () => (
   <div>
@@ -46,17 +48,17 @@ const BasicDialog = () => (
 )
 
 const Dialog = reduxDialog({
-  name: 'signupDialog' // unique name - you can't have two dialogs with the same name
+  name: 'Sign up dialog' // unique name - you can't have two dialogs with the same name (will be used as aria-label as well)
 })(BasicDialog);
 ```
 
 ### Step 3
 
-Use redux-dialog's actions to show and hide the dialog
+Use redux-dialog-extended's actions to show and hide the dialog
 ```js
-import { openDialog, closeDialog } from 'redux-dialog';
+import { openDialog, closeDialog } from 'redux-dialog-extended';
 const MyComponent = () => (
-  <a href="#" onClick={() => dispatch(openDialog('signupDialog'))}></a>
+  <a href="#" onClick={() => dispatch(openDialog('Sign up dialog'))}></a>
 )
 ```
 
@@ -66,6 +68,36 @@ The reduxDialog method only requires the name property to work. The rest of the 
 #### `name`: string
 A unique id for this dialog
 
+### Passing a payload to the modal
+
+When dispatching the action to open the dialog, adding a payload as the second parameter to `openDialog` will be available within the dialog as the `payload` property.
+```js
+dispatch(openDialog('accountDialog', { accountName: 'My Account' }));
+
+const BasicDialog = ({ payload }) => (
+  <div>
+    {payload.accountName}
+  </div>
+  <div>
+    My awesome modalbox!
+  </div>
+)
+```
+
+
+## Working on the source code
+
+Clone this repo then run:
+```javascript
+yarn install
+yarn start
+```
+
+Then open http://localhost:8080 to see a working example.
+
+## Building a release
+
+`yarn build` should do the trick.
 
 ## Tests
 Work in progress

@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import reduxDialog, { dialogReducer, openDialog, closeDialog } from '../src';
+import reduxDialog, { dialogReducer, openDialog, closeDialog, closeAllDialogs } from '../src';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 const reducers = {
-  dialogReducer: dialogReducer
-}
+  dialogs: dialogReducer
+};
 
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 
-const BasicDialog = () => (
+const BasicDialog = (props) => (
   <div>
     <div className="dlg--body">
-      My awesome modalbox!
+      My awesome modalbox for &quot;{props.payload.contentId}&quot;! <a href="#" onClick={ props.onRequestClose }>Close it</a> or <a href="#" onClick={ () => store.dispatch(closeAllDialogs()) }>close all</a>
     </div>
   </div>
-)
+);
 
 const Dialog = reduxDialog({
-  name: 'signupDialog'
+  name: 'Sign up dialog'
 })(BasicDialog);
 
 const App = () => (
   <Provider store={store}>
     <div>
       <Dialog onAfterOpen={ () => console.log('On After Open') } onRequestClose={ () => console.log('On Request Close') } />
-      <a onClick={() => store.dispatch(openDialog('signupDialog'))} href="#">Open Dialog</a>
+      <a onClick={() => store.dispatch(openDialog('Sign up dialog', { contentId: "How to pass payload" }))} href="#">Open Dialog</a>
     </div>
   </Provider>
-)
+);
 
 render(<App />,
   document.getElementById('react-js'));

@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+node_modules
+build
+dist
+
+npm-debug.log*
+*.swp
