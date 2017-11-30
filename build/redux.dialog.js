@@ -468,14 +468,19 @@ var reduxDialog = function reduxDialog(dialogProps) {
     }(_react.Component);
 
     var mapStateToProps = function mapStateToProps(state) {
-      if (state.dialogs.dialogs && state.dialogs.dialogs[name]) {
-        var _state$dialogs$dialog = state.dialogs.dialogs[name],
-            isOpen = _state$dialogs$dialog.isOpen,
-            payload = _state$dialogs$dialog.payload;
+      var reducer = typeof state.get === 'function' ? state.get('dialogReducer') : state.dialogReducer;
+
+      if (reducer.dialogs && reducer.dialogs.hasOwnProperty(name)) {
+        var _reducer$dialogs$name = reducer.dialogs[name],
+            isOpen = _reducer$dialogs$name.isOpen,
+            payload = _reducer$dialogs$name.payload;
 
         return { isOpen: isOpen, payload: payload };
       }
-      return { isOpen: false };
+
+      return {
+        payload: {}
+      };
     };
 
     var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
@@ -1678,10 +1683,6 @@ exports.default = function () {
       return _extends({}, state, {
         dialogs: dialogsAfterClose
       });
-      break;
-
-    case c.CLOSE_ALL_DIALOGS:
-      return _extends({}, state, initialState);
       break;
 
     default:
