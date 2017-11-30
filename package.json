@@ -1,6 +1,6 @@
 {
   "name": "redux-dialog",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Higher Order Component using react-redux to keep dialog state in a Redux store",
   "main": "build/redux.dialog.js",
   "repository": {
