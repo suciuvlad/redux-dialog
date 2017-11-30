@@ -22,11 +22,18 @@ const reduxDialog = (dialogProps) => {
     }
 
     const mapStateToProps = (state) => {
-      if(state.dialogs.dialogs && state.dialogs.dialogs[name]) {
-        const { isOpen, payload } = state.dialogs.dialogs[name];
+      const reducer = typeof state.get === 'function'
+        ? state.get('dialogReducer')
+        : state.dialogReducer;
+
+      if (reducer.dialogs && reducer.dialogs.hasOwnProperty(name)) {
+        const { isOpen, payload } = reducer.dialogs[name];
         return { isOpen, payload };
       }
-      return { isOpen: false };
+
+      return {
+        payload: {}
+      };
     };
 
     const mapDispatchToProps = (dispatch, props) => ({

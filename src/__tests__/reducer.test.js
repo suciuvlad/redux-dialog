@@ -28,16 +28,6 @@ describe('Reducer', () => {
     expect(reducer.dialogs.dialog1.isOpen).toEqual(false);
   });
 
-  it('should close all dialogs', () => {
-    const action = {
-      type: constants.CLOSE_ALL_DIALOG,
-      name: 'dialog1'
-    };
-
-    const reducer = dialogReducer(initialState, action);
-    expect(reducer).toEqual(initialState);
-  });
-
   it('should accept a payload', () => {
     const payload = { name: "John" };
 

@@ -5,7 +5,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 const reducers = {
-  dialogs: dialogReducer
+  dialogReducer
 };
 
 const reducer = combineReducers(reducers);
@@ -14,7 +14,7 @@ const store = createStore(reducer);
 const BasicDialog = (props) => (
   <div>
     <div className="dlg--body">
-      My awesome modalbox for &quot;{props.payload.contentId}&quot;! <a href="#" onClick={ props.onRequestClose }>Close it</a> or <a href="#" onClick={ () => store.dispatch(closeAllDialogs()) }>close all</a>
+      My awesome modalbox for "{ props.payload.contentId } "! <a href="#" onClick={ props.onRequestClose }>Close it</a>
     </div>
   </div>
 );

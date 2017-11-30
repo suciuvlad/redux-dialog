@@ -31,10 +31,6 @@ export default (state = initialState, action) => {
       });
     break;
 
-    case c.CLOSE_ALL_DIALOGS:
-      return Object.assign({}, state, initialState);
-    break;
-
     default:
       return state;
   }
