@@ -1,3 +1,4 @@
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/suciuvlad/redux-dialog)
 [![NPM](https://img.shields.io/npm/v/redux-dialog.svg)](https://www.npmjs.com/package/redux-dialog)
 # redux-dialog
 
