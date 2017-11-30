@@ -1650,8 +1650,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var initialState = {
+  dialogs: {}
+};
+
 exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { dialogs: {} };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {
@@ -1677,7 +1681,7 @@ exports.default = function () {
       break;
 
     case c.CLOSE_ALL_DIALOGS:
-      return _extends({}, state, { dialogs: {} });
+      return _extends({}, state, initialState);
       break;
 
     default:
