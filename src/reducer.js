@@ -1,6 +1,10 @@
 import * as c from './constants';
 
-export default (state = {dialogs: {}}, action) => {
+const initialState = {
+  dialogs: {}
+}
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case c.OPEN_DIALOG:
       const dialogsAfterOpen = Object.assign({}, state.dialogs, {
@@ -28,7 +32,7 @@ export default (state = {dialogs: {}}, action) => {
     break;
 
     case c.CLOSE_ALL_DIALOGS:
-      return Object.assign({}, state, {dialogs: {}});
+      return Object.assign({}, state, initialState);
     break;
 
     default:

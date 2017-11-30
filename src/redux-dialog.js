@@ -4,7 +4,6 @@ import Modal from 'react-modal'
 import { closeDialog } from './actions';
 
 const reduxDialog = (dialogProps) => {
-
   const {
     name,
     onAfterOpen = () => {},
@@ -15,8 +14,8 @@ const reduxDialog = (dialogProps) => {
     class ReduxDialog extends Component {
       render () {
         return (
-          <Modal contentLabel={name} {...dialogProps} {...this.props}>
-            <WrappedComponent {...this.props} />
+          <Modal contentLabel={ name } { ...dialogProps } { ...this.props }>
+            <WrappedComponent { ...this.props } />
           </Modal>
         );
       }
