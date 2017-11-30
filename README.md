@@ -101,4 +101,4 @@ Then open http://localhost:8080 to see a working example.
 `yarn build` should do the trick.
 
 ## Tests
-Work in progress
+`yarn run test`
