@@ -33,7 +33,8 @@ describe('reduxDialog', () => {
     };
 
     const Dialog = reduxDialog({
-      name: 'dialog1'
+      name: 'dialog1',
+      ariaHideApp: false
     })(BasicDialog);
 
     const wrapper = mount(
@@ -74,6 +75,7 @@ describe('reduxDialog', () => {
 
     const Dialog = reduxDialog({
       name: 'dialog1',
+      ariaHideApp: false,
       isOpen: true
     })(BasicDialog);
 
@@ -99,6 +101,7 @@ describe('reduxDialog', () => {
 
     const Dialog = reduxDialog({
       name: 'dialog1',
+      ariaHideApp: false,
       isOpen: true
     })(BasicDialog);
 

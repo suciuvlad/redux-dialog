@@ -35,6 +35,7 @@ const App = () => (
   <Provider store={store}>
     <div>
       <Dialog
+        appElement={document.getElementById('react-js')}
         onAfterOpen={() => console.log('On After Open')}
         onRequestClose={() => console.log('On Request Close')}
       />
