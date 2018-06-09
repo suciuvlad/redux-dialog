@@ -5,18 +5,14 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import serializer from 'enzyme-to-json/serializer';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store'
+import configureStore from 'redux-mock-store';
 
 import reduxDialog from '../redux-dialog';
 
-const middlewares = []
-const mockStore = configureStore(middlewares)
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
-const BasicDialog = () => (
-  <div>
-    My awesome modalbox!
-  </div>
-)
+const BasicDialog = () => <div>My awesome modalbox!</div>;
 
 BasicDialog.displayName = 'DialogComponent';
 
@@ -34,14 +30,14 @@ describe('reduxDialog', () => {
           }
         }
       }
-    }
+    };
 
     const Dialog = reduxDialog({
       name: 'dialog1'
     })(BasicDialog);
 
     const wrapper = mount(
-      <Provider store={ mockStore(initialState) }>
+      <Provider store={mockStore(initialState)}>
         <Dialog />
       </Provider>
     );
@@ -52,16 +48,16 @@ describe('reduxDialog', () => {
   it('should have the dialog closed', () => {
     const initialState = {
       dialogReducer: {
-        dialogs: { }
+        dialogs: {}
       }
-    }
+    };
 
     const Dialog = reduxDialog({
       name: 'dialog1'
     })(BasicDialog);
 
     const wrapper = mount(
-      <Provider store={ mockStore(initialState) }>
+      <Provider store={mockStore(initialState)}>
         <Dialog />
       </Provider>
     );
@@ -72,10 +68,9 @@ describe('reduxDialog', () => {
   it('it should have the dialog open if isOpen is set to true', () => {
     const initialState = {
       dialogReducer: {
-        dialogs: {
-        }
+        dialogs: {}
       }
-    }
+    };
 
     const Dialog = reduxDialog({
       name: 'dialog1',
@@ -83,7 +78,7 @@ describe('reduxDialog', () => {
     })(BasicDialog);
 
     const wrapper = mount(
-      <Provider store={ mockStore(initialState) }>
+      <Provider store={mockStore(initialState)}>
         <Dialog />
       </Provider>
     );
@@ -100,7 +95,7 @@ describe('reduxDialog', () => {
           }
         }
       }
-    }
+    };
 
     const Dialog = reduxDialog({
       name: 'dialog1',
@@ -108,7 +103,7 @@ describe('reduxDialog', () => {
     })(BasicDialog);
 
     const wrapper = mount(
-      <Provider store={ mockStore(initialState) }>
+      <Provider store={mockStore(initialState)}>
         <Dialog />
       </Provider>
     );

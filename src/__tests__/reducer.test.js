@@ -5,7 +5,7 @@ import * as constants from '../constants';
 
 const initialState = {
   dialogs: {}
-}
+};
 
 describe('Reducer', () => {
   it('should open the dialog', () => {
@@ -29,7 +29,7 @@ describe('Reducer', () => {
   });
 
   it('should accept a payload', () => {
-    const payload = { name: "John" };
+    const payload = { name: 'John' };
 
     const action = {
       type: constants.OPEN_DIALOG,
