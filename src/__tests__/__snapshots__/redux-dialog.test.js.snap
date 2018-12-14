@@ -29,84 +29,44 @@ exports[`reduxDialog it should have the dialog open if isOpen is set to true 1`]
         parentSelector={[Function]}
         payload={Object {}}
         portalClassName="ReactModalPortal"
+        role="dialog"
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
         shouldFocusAfterRender={true}
         shouldReturnFocusAfterClose={true}
       >
-        <ModalPortal
-          ariaHideApp={false}
-          bodyOpenClassName="ReactModal__Body--open"
-          closeTimeoutMS={0}
-          contentLabel="dialog1"
-          defaultStyles={
-            Object {
-              "content": Object {
-                "WebkitOverflowScrolling": "touch",
-                "background": "#fff",
-                "border": "1px solid #ccc",
-                "borderRadius": "4px",
-                "bottom": "40px",
-                "left": "40px",
-                "outline": "none",
-                "overflow": "auto",
-                "padding": "20px",
-                "position": "absolute",
-                "right": "40px",
-                "top": "40px",
-              },
-              "overlay": Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              },
-            }
-          }
-          isOpen={true}
-          name="dialog1"
-          onRequestClose={[Function]}
-          parentSelector={[Function]}
-          payload={Object {}}
-          portalClassName="ReactModalPortal"
-          shouldCloseOnEsc={true}
-          shouldCloseOnOverlayClick={true}
-          shouldFocusAfterRender={true}
-          shouldReturnFocusAfterClose={true}
-          style={
-            Object {
-              "content": Object {},
-              "overlay": Object {},
-            }
+        <Portal
+          containerInfo={
+            <div
+              class="ReactModalPortal"
+            >
+              <div
+                class="ReactModal__Overlay ReactModal__Overlay--after-open"
+                style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: rgba(255, 255, 255, 0.75);"
+              >
+                <div
+                  aria-label="dialog1"
+                  class="ReactModal__Content ReactModal__Content--after-open"
+                  role="dialog"
+                  style="position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; border: 1px solid #ccc; background: rgb(255, 255, 255); overflow: auto; border-radius: 4px; outline: none; padding: 20px;"
+                  tabindex="-1"
+                >
+                  <div>
+                    My awesome modalbox!
+                  </div>
+                </div>
+              </div>
+            </div>
           }
         >
-          <div
-            aria-modal="true"
-            className="ReactModal__Overlay ReactModal__Overlay--after-open"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-            style={
+          <ModalPortal
+            ariaHideApp={false}
+            bodyOpenClassName="ReactModal__Body--open"
+            closeTimeoutMS={0}
+            contentLabel="dialog1"
+            defaultStyles={
               Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <div
-              aria-label="dialog1"
-              className="ReactModal__Content ReactModal__Content--after-open"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onMouseUp={[Function]}
-              style={
-                Object {
+                "content": Object {
                   "WebkitOverflowScrolling": "touch",
                   "background": "#fff",
                   "border": "1px solid #ccc",
@@ -119,21 +79,88 @@ exports[`reduxDialog it should have the dialog open if isOpen is set to true 1`]
                   "position": "absolute",
                   "right": "40px",
                   "top": "40px",
+                },
+                "overlay": Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
+                },
+              }
+            }
+            isOpen={true}
+            name="dialog1"
+            onRequestClose={[Function]}
+            parentSelector={[Function]}
+            payload={Object {}}
+            portalClassName="ReactModalPortal"
+            role="dialog"
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
+            shouldFocusAfterRender={true}
+            shouldReturnFocusAfterClose={true}
+            style={
+              Object {
+                "content": Object {},
+                "overlay": Object {},
+              }
+            }
+          >
+            <div
+              className="ReactModal__Overlay ReactModal__Overlay--after-open"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
                 }
               }
-              tabIndex="-1"
             >
-              <DialogComponent
-                onRequestClose={[Function]}
-                payload={Object {}}
+              <div
+                aria-label="dialog1"
+                className="ReactModal__Content ReactModal__Content--after-open"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                role="dialog"
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "background": "#fff",
+                    "border": "1px solid #ccc",
+                    "borderRadius": "4px",
+                    "bottom": "40px",
+                    "left": "40px",
+                    "outline": "none",
+                    "overflow": "auto",
+                    "padding": "20px",
+                    "position": "absolute",
+                    "right": "40px",
+                    "top": "40px",
+                  }
+                }
+                tabIndex="-1"
               >
-                <div>
-                  My awesome modalbox!
-                </div>
-              </DialogComponent>
+                <DialogComponent
+                  onRequestClose={[Function]}
+                  payload={Object {}}
+                >
+                  <div>
+                    My awesome modalbox!
+                  </div>
+                </DialogComponent>
+              </div>
             </div>
-          </div>
-        </ModalPortal>
+          </ModalPortal>
+        </Portal>
       </Modal>
     </ReduxDialog>
   </Connect(ReduxDialog)>
@@ -169,59 +196,69 @@ exports[`reduxDialog should have the dialog closed 1`] = `
         parentSelector={[Function]}
         payload={Object {}}
         portalClassName="ReactModalPortal"
+        role="dialog"
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
         shouldFocusAfterRender={true}
         shouldReturnFocusAfterClose={true}
       >
-        <ModalPortal
-          ariaHideApp={true}
-          bodyOpenClassName="ReactModal__Body--open"
-          closeTimeoutMS={0}
-          contentLabel="dialog1"
-          defaultStyles={
-            Object {
-              "content": Object {
-                "WebkitOverflowScrolling": "touch",
-                "background": "#fff",
-                "border": "1px solid #ccc",
-                "borderRadius": "4px",
-                "bottom": "40px",
-                "left": "40px",
-                "outline": "none",
-                "overflow": "auto",
-                "padding": "20px",
-                "position": "absolute",
-                "right": "40px",
-                "top": "40px",
-              },
-              "overlay": Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              },
-            }
+        <Portal
+          containerInfo={
+            <div
+              class="ReactModalPortal"
+            />
           }
-          isOpen={false}
-          name="dialog1"
-          onRequestClose={[Function]}
-          parentSelector={[Function]}
-          payload={Object {}}
-          portalClassName="ReactModalPortal"
-          shouldCloseOnEsc={true}
-          shouldCloseOnOverlayClick={true}
-          shouldFocusAfterRender={true}
-          shouldReturnFocusAfterClose={true}
-          style={
-            Object {
-              "content": Object {},
-              "overlay": Object {},
+        >
+          <ModalPortal
+            ariaHideApp={true}
+            bodyOpenClassName="ReactModal__Body--open"
+            closeTimeoutMS={0}
+            contentLabel="dialog1"
+            defaultStyles={
+              Object {
+                "content": Object {
+                  "WebkitOverflowScrolling": "touch",
+                  "background": "#fff",
+                  "border": "1px solid #ccc",
+                  "borderRadius": "4px",
+                  "bottom": "40px",
+                  "left": "40px",
+                  "outline": "none",
+                  "overflow": "auto",
+                  "padding": "20px",
+                  "position": "absolute",
+                  "right": "40px",
+                  "top": "40px",
+                },
+                "overlay": Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
+                },
+              }
             }
-          }
-        />
+            isOpen={false}
+            name="dialog1"
+            onRequestClose={[Function]}
+            parentSelector={[Function]}
+            payload={Object {}}
+            portalClassName="ReactModalPortal"
+            role="dialog"
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
+            shouldFocusAfterRender={true}
+            shouldReturnFocusAfterClose={true}
+            style={
+              Object {
+                "content": Object {},
+                "overlay": Object {},
+              }
+            }
+          />
+        </Portal>
       </Modal>
     </ReduxDialog>
   </Connect(ReduxDialog)>
@@ -256,83 +293,44 @@ exports[`reduxDialog should have the dialog open 1`] = `
         onRequestClose={[Function]}
         parentSelector={[Function]}
         portalClassName="ReactModalPortal"
+        role="dialog"
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
         shouldFocusAfterRender={true}
         shouldReturnFocusAfterClose={true}
       >
-        <ModalPortal
-          ariaHideApp={false}
-          bodyOpenClassName="ReactModal__Body--open"
-          closeTimeoutMS={0}
-          contentLabel="dialog1"
-          defaultStyles={
-            Object {
-              "content": Object {
-                "WebkitOverflowScrolling": "touch",
-                "background": "#fff",
-                "border": "1px solid #ccc",
-                "borderRadius": "4px",
-                "bottom": "40px",
-                "left": "40px",
-                "outline": "none",
-                "overflow": "auto",
-                "padding": "20px",
-                "position": "absolute",
-                "right": "40px",
-                "top": "40px",
-              },
-              "overlay": Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              },
-            }
-          }
-          isOpen={true}
-          name="dialog1"
-          onRequestClose={[Function]}
-          parentSelector={[Function]}
-          portalClassName="ReactModalPortal"
-          shouldCloseOnEsc={true}
-          shouldCloseOnOverlayClick={true}
-          shouldFocusAfterRender={true}
-          shouldReturnFocusAfterClose={true}
-          style={
-            Object {
-              "content": Object {},
-              "overlay": Object {},
-            }
+        <Portal
+          containerInfo={
+            <div
+              class="ReactModalPortal"
+            >
+              <div
+                class="ReactModal__Overlay ReactModal__Overlay--after-open"
+                style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: rgba(255, 255, 255, 0.75);"
+              >
+                <div
+                  aria-label="dialog1"
+                  class="ReactModal__Content ReactModal__Content--after-open"
+                  role="dialog"
+                  style="position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; border: 1px solid #ccc; background: rgb(255, 255, 255); overflow: auto; border-radius: 4px; outline: none; padding: 20px;"
+                  tabindex="-1"
+                >
+                  <div>
+                    My awesome modalbox!
+                  </div>
+                </div>
+              </div>
+            </div>
           }
         >
-          <div
-            aria-modal="true"
-            className="ReactModal__Overlay ReactModal__Overlay--after-open"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-            style={
+          <ModalPortal
+            ariaHideApp={false}
+            bodyOpenClassName="ReactModal__Body--open"
+            closeTimeoutMS={0}
+            contentLabel="dialog1"
+            defaultStyles={
               Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <div
-              aria-label="dialog1"
-              className="ReactModal__Content ReactModal__Content--after-open"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onMouseUp={[Function]}
-              style={
-                Object {
+                "content": Object {
                   "WebkitOverflowScrolling": "touch",
                   "background": "#fff",
                   "border": "1px solid #ccc",
@@ -345,21 +343,87 @@ exports[`reduxDialog should have the dialog open 1`] = `
                   "position": "absolute",
                   "right": "40px",
                   "top": "40px",
+                },
+                "overlay": Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
+                },
+              }
+            }
+            isOpen={true}
+            name="dialog1"
+            onRequestClose={[Function]}
+            parentSelector={[Function]}
+            portalClassName="ReactModalPortal"
+            role="dialog"
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
+            shouldFocusAfterRender={true}
+            shouldReturnFocusAfterClose={true}
+            style={
+              Object {
+                "content": Object {},
+                "overlay": Object {},
+              }
+            }
+          >
+            <div
+              className="ReactModal__Overlay ReactModal__Overlay--after-open"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
                 }
               }
-              tabIndex="-1"
             >
-              <DialogComponent
-                isOpen={true}
-                onRequestClose={[Function]}
+              <div
+                aria-label="dialog1"
+                className="ReactModal__Content ReactModal__Content--after-open"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+                role="dialog"
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "background": "#fff",
+                    "border": "1px solid #ccc",
+                    "borderRadius": "4px",
+                    "bottom": "40px",
+                    "left": "40px",
+                    "outline": "none",
+                    "overflow": "auto",
+                    "padding": "20px",
+                    "position": "absolute",
+                    "right": "40px",
+                    "top": "40px",
+                  }
+                }
+                tabIndex="-1"
               >
-                <div>
-                  My awesome modalbox!
-                </div>
-              </DialogComponent>
+                <DialogComponent
+                  isOpen={true}
+                  onRequestClose={[Function]}
+                >
+                  <div>
+                    My awesome modalbox!
+                  </div>
+                </DialogComponent>
+              </div>
             </div>
-          </div>
-        </ModalPortal>
+          </ModalPortal>
+        </Portal>
       </Modal>
     </ReduxDialog>
   </Connect(ReduxDialog)>
@@ -394,58 +458,68 @@ exports[`reduxDialog state takes presedence over the default isOpen props 1`] = 
         onRequestClose={[Function]}
         parentSelector={[Function]}
         portalClassName="ReactModalPortal"
+        role="dialog"
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
         shouldFocusAfterRender={true}
         shouldReturnFocusAfterClose={true}
       >
-        <ModalPortal
-          ariaHideApp={false}
-          bodyOpenClassName="ReactModal__Body--open"
-          closeTimeoutMS={0}
-          contentLabel="dialog1"
-          defaultStyles={
-            Object {
-              "content": Object {
-                "WebkitOverflowScrolling": "touch",
-                "background": "#fff",
-                "border": "1px solid #ccc",
-                "borderRadius": "4px",
-                "bottom": "40px",
-                "left": "40px",
-                "outline": "none",
-                "overflow": "auto",
-                "padding": "20px",
-                "position": "absolute",
-                "right": "40px",
-                "top": "40px",
-              },
-              "overlay": Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.75)",
-                "bottom": 0,
-                "left": 0,
-                "position": "fixed",
-                "right": 0,
-                "top": 0,
-              },
-            }
+        <Portal
+          containerInfo={
+            <div
+              class="ReactModalPortal"
+            />
           }
-          isOpen={false}
-          name="dialog1"
-          onRequestClose={[Function]}
-          parentSelector={[Function]}
-          portalClassName="ReactModalPortal"
-          shouldCloseOnEsc={true}
-          shouldCloseOnOverlayClick={true}
-          shouldFocusAfterRender={true}
-          shouldReturnFocusAfterClose={true}
-          style={
-            Object {
-              "content": Object {},
-              "overlay": Object {},
+        >
+          <ModalPortal
+            ariaHideApp={false}
+            bodyOpenClassName="ReactModal__Body--open"
+            closeTimeoutMS={0}
+            contentLabel="dialog1"
+            defaultStyles={
+              Object {
+                "content": Object {
+                  "WebkitOverflowScrolling": "touch",
+                  "background": "#fff",
+                  "border": "1px solid #ccc",
+                  "borderRadius": "4px",
+                  "bottom": "40px",
+                  "left": "40px",
+                  "outline": "none",
+                  "overflow": "auto",
+                  "padding": "20px",
+                  "position": "absolute",
+                  "right": "40px",
+                  "top": "40px",
+                },
+                "overlay": Object {
+                  "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
+                },
+              }
             }
-          }
-        />
+            isOpen={false}
+            name="dialog1"
+            onRequestClose={[Function]}
+            parentSelector={[Function]}
+            portalClassName="ReactModalPortal"
+            role="dialog"
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
+            shouldFocusAfterRender={true}
+            shouldReturnFocusAfterClose={true}
+            style={
+              Object {
+                "content": Object {},
+                "overlay": Object {},
+              }
+            }
+          />
+        </Portal>
       </Modal>
     </ReduxDialog>
   </Connect(ReduxDialog)>
